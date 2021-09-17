@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import {ArticleSummary as ArticleSummaryData} from '../types/Article';
+import { PublisherBox } from './PublisherBox';
 
 const ArticleSummaryContainer = styled.div`
   padding: 1.5em;
@@ -9,10 +10,9 @@ const ArticleSummaryContainer = styled.div`
   padding-bottom: 0.5em;
   display: flex;
   flex-direction: column;
-  justify-items: center;
-  place-items: center;
   cursor: pointer;
   transition: background-color 100ms linear;
+  flex: 1;
 
   &:hover {
     background-color: #eeddc4;
@@ -44,16 +44,30 @@ const ImageArticleSummaryContainer = styled.div`
   display: flex;
   flex-direction: row;
   place-items: center;
+  justify-content: start;
+  flex: 1;
 `;
 
-const ArticleSummaryContentContainer = styled.div``;
+const ArticleSummaryContentContainer = styled.div`
+  flex: 1;
+`;
 
 const ArticleSummaryAdditionalInfo = styled.div`
   font-size: 0.7em;
   color: #443e38aa;
   margin-top: 0.2em;
-  margin-bottom: 0.2em;
+  margin-bottom: 1em;
+  justify-items: between;
+  place-items: center;
+  display: flex;
 `;
+
+const ArticleImageContainer = styled.div`
+  min-width: 13em;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+`
 
 type ArticleSummaryProps = {
   articleSummary: ArticleSummaryData;
@@ -64,10 +78,15 @@ const ArticleSummary: React.FC<ArticleSummaryProps> = ({articleSummary}) => {
     <Link to={`/article/${articleSummary.id}`}>
       <ArticleSummaryContainer>
         <ImageArticleSummaryContainer>
+          <ArticleImageContainer>
           {articleSummary.image && <ArticleSummaryImage src={articleSummary.image} />}
+          </ArticleImageContainer>
           <ArticleSummaryContentContainer>
             <ArticleSummaryTitle>{articleSummary.title}</ArticleSummaryTitle>
-            <ArticleSummaryAdditionalInfo>{articleSummary.publisher + ' ' + articleSummary.publishTime}</ArticleSummaryAdditionalInfo>
+            <ArticleSummaryAdditionalInfo>
+              <PublisherBox publisher={articleSummary.publisher} />
+              <div>{articleSummary.publishTime}</div>
+              </ArticleSummaryAdditionalInfo>
             <ArticleSummaryDescription>{articleSummary.description}</ArticleSummaryDescription>
           </ArticleSummaryContentContainer>
         </ImageArticleSummaryContainer>

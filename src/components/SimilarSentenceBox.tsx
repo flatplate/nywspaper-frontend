@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import {useCachedFetch} from '../hooks';
-import {SimilarSentence} from '../views/DocView';
+import {SimilarSentence} from '../containers/DocView';
+import {PublisherBox} from './PublisherBox';
 
 type SimilarSentenceBoxProps = {
   documentId: number;
@@ -37,9 +38,17 @@ const Similarity = styled.div`
   margin-bottom: 10;
 `;
 
+const PublisherSimilarity = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  place-items: center;
+  width: 100%;
+`;
+
 const SimilarSentenceBox: React.FC<SimilarSentenceBoxProps> = props => {
   const {status, data} = useCachedFetch<SimilarSentence[]>(
-    `http://localhost:5000/api/v1/similarsentences?document_id=${props.documentId}&sentence_id=${props.sentenceId}`
+    `${process.env.REACT_APP_API_URL}/api/v1/similarsentences?document_id=${props.documentId}&sentence_id=${props.sentenceId}`
   );
   console.log('DATA', data);
   console.log('DOCUMENTID', (data && data.length > 0 && data[0].documentId) || null);
@@ -51,8 +60,12 @@ const SimilarSentenceBox: React.FC<SimilarSentenceBoxProps> = props => {
             <>
               {i !== 0 && <hr />}
               <Sentence>{sentence.text}</Sentence>
-              <Publisher>-Publisher {sentence.documentId}</Publisher>
-              <Similarity>Similarity {Math.round(sentence.similarity * 100)}%</Similarity>
+              <PublisherSimilarity>
+                <Publisher>
+                  <PublisherBox publisher={sentence.publisher} />
+                </Publisher>
+                <Similarity>Similarity {Math.round(sentence.similarity * 100)}%</Similarity>
+              </PublisherSimilarity>
               <br />
             </>
           ))

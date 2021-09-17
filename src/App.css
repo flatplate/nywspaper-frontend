@@ -40,6 +40,7 @@
 html, body {
   font-family: "Source Serif Pro", serif !important;
   background-color: #f1e6d6;
+  scroll-behavior: smooth;
 }
 
 a {

@@ -1,4 +1,4 @@
-import {Document} from './views/DocView';
+import {Document} from './containers/DocView';
 
 // const testData: Document = {
 //   sentences: [

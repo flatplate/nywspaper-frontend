@@ -12,7 +12,7 @@ const ArticleListContainer = styled.div``;
 
 const StoryArticleList: React.FC<StoryArticleListProps> = ({articleIdList}) => {
   const params = articleIdList.map((id, i) => `${i === 0 ? '?' : '&'}articles=${id}`).join('');
-  const {status, data} = useCachedFetch<ArticleSummaryData[]>(`http://localhost:5000/api/v1/articlesummary${params}`);
+  const {status, data} = useCachedFetch<ArticleSummaryData[]>(`${process.env.REACT_APP_API_URL}/api/v1/articlesummary${params}`);
 
   return (
     <ArticleListContainer>

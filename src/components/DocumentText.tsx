@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Document} from '../views/DocView';
+import {Document, Sentence} from '../containers/DocView';
+import {PublisherBox} from './PublisherBox';
 import {SentenceElement} from './Sentence';
 
-const Title = styled.h2`
+const Title = styled.a`
   font-size: 1.8em;
   font-weight: bold;
   color: #060606;
@@ -19,6 +20,9 @@ const AdditionalInformation = styled.p`
   margin-bottom: 1em;
   color: #06060690;
   text-align: left;
+  display: flex;
+  flex-direction: row;
+  place-items: center;
 `;
 
 const HeadlineImage = styled.img`
@@ -30,26 +34,37 @@ const ImageContainer = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
+`;
 
+const SentencesContainer = styled.div`
+  margin-top: 2em;
+  line-height: 1.5em;
+  overflow-x: visible;
 `;
 
 type DocumentProps = {
   document: Document;
+  onSentenceHovered: (sentence: Sentence, offsetTop: number) => void;
+  hoveredSentenceId: number;
 };
 
 const DocumentText: React.FC<DocumentProps> = props => {
   return (
-    <div>
+    <div style={{overflowX: 'visible'}}>
       <ImageContainer>
         <HeadlineImage src={props.document.image} />
       </ImageContainer>
-      <Title>{props.document.title}</Title>
+      <Title href={props.document.url}>{props.document.title}</Title>
       <AdditionalInformation>
-        {props.document.publisher}, at {props.document.publishTime}
+        <PublisherBox publisher={props.document.publisher} />
+        {'  '}
+        {props.document.publishTime}
       </AdditionalInformation>
-      {props.document.sentences.map(sentence => (
-        <SentenceElement sentence={sentence} />
-      ))}
+      <SentencesContainer>
+        {props.document.sentences.map(sentence => (
+          <SentenceElement sentence={sentence} onHovered={(offsetTop) => props.onSentenceHovered(sentence, offsetTop)} hovered={sentence.id === props.hoveredSentenceId} />
+        ))}
+      </SentencesContainer>
     </div>
   );
 };

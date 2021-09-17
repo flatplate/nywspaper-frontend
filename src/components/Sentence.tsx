@@ -1,35 +1,57 @@
-import React, { useState } from 'react';
+import React, {useRef, useState} from 'react';
 import {useCachedFetch} from '../hooks';
-import {Sentence, SimilarSentence} from '../views/DocView';
+import {Sentence, SimilarSentence} from '../containers/DocView';
 import {SimilarSentenceBox} from './SimilarSentenceBox';
+import styled from 'styled-components';
 
 type SentenceProps = {
   sentence: Sentence;
+  onHovered: (offsetTop: number) => void;
+  hovered: boolean;
 };
 
-const SentenceElement: React.FC<SentenceProps> = props => {
-  const [hovered, setHovered] = React.useState(false);
+const appendSpaces = (element: string | undefined) => {
+  if (element) {
+    return element + ' ';
+  } else {
+    return element;
+  }
+};
 
+type ContainerProps = {
+  hovered: boolean;
+};
+
+const Container = styled.div<ContainerProps>`
+  margin-right: ${props => (props.hovered ? '-1em' : 0)};
+  margin-left: ${props => (props.hovered ? '1em' : 0)};
+  transition: all linear 0.1s;
+  cursor: pointer;
+`;
+
+const SentenceElement: React.FC<SentenceProps> = props => {
+  const ref: React.Ref<HTMLInputElement> = useRef(null);
   const bgColor = 'inherit';
 
   return (
-    <>
+    <Container
+      hovered={props.hovered}
+      onClick={() => props.onHovered((ref.current && ref.current.getBoundingClientRect().top) || 0)}
+    >
       <mark
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
         style={{
-          backgroundColor: hovered ? '#f8aa88' : bgColor,
+          backgroundColor: props.hovered ? '#f8aa88' : bgColor,
           cursor: 'pointer',
-          transition: 'background-color 100ms linear',
+          transition: 'background-color 150ms linear',
           color: '#060606',
           fontFamily: '"Source Serif Pro", serif',
           whiteSpace: 'pre-line'
         }}
+        ref={ref}
       >
-        {props.sentence.text.replace(/\n(\s*\n)+/i, '\n\n') + ' '}
+        {props.sentence.text.split(/\n(\s*\n)*/i).map((el, i) => (i !== 0 ? [<br />, appendSpaces(el)] : [appendSpaces(el)]))}
       </mark>
-      {hovered && <SimilarSentenceBox sentenceId={props.sentence.id} documentId={props.sentence.articleId} />}
-    </>
+    </Container>
   );
 };
 

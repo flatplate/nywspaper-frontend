@@ -1,9 +1,9 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {DocView} from './views/DocView';
+import {DocView} from './containers/DocView';
 import {Footer} from './components/Footer';
-import {HomePage} from './views/HomePage';
+import {HomePage} from './containers/HomePage';
 import styled from 'styled-components';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 
@@ -28,9 +28,9 @@ const AppContainer = styled.div`
 `;
 
 const InnerContainer = styled.div`
-  max-width: 60em;
+  max-width: 100em;
   min-height: 100vh;
-  padding: 5em;
+  margin: 5em;
 `;
 
 const Container = styled.div`
