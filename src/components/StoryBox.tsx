@@ -41,10 +41,10 @@ const StoryBoxImage = styled.img`
   max-height: 8em;
 `;
 
-const ImageStoryContainer = styled.div`
+const ImageStoryContainer = styled.div<{mobile: boolean}>`
   padding: 1em;
   display: flex;
-  flex-direction: row;
+  flex-direction: ${({mobile}) => mobile ? 'column' : 'row'};
   place-items: center;
   cursor: pointer;
   transition: background-color 100ms linear;
@@ -58,10 +58,11 @@ const StoryContentContainer = styled.div``;
 
 const StoryBox: React.FC<StoryBoxProps> = ({story}) => {
   const [collapsed, setCollapsed] = useState(true);
+  const mobile = window.innerWidth <= 768;
 
   return (
     <StoryBoxContainer>
-      <ImageStoryContainer onClick={() => setCollapsed(!collapsed)}>
+      <ImageStoryContainer onClick={() => setCollapsed(!collapsed)} mobile={mobile}>
         {story.image && <StoryBoxImage src={story.image} />}
         <StoryContentContainer>
           <StoryBoxTitle>{story.title}</StoryBoxTitle>

@@ -12,6 +12,7 @@ const HomePage: React.FC = () => {
   const [error, setError] = React.useState(undefined);
   const [offset, setOffset] = React.useState(0);
   const loadRef: React.Ref<HTMLInputElement> = useRef(null);
+  const mobile = window.innerWidth < 768;
 
   const loadStories = (offset: number) => {
     fetch(`${process.env.REACT_APP_API_URL}/api/v1/stories?offset=${offset}`)
