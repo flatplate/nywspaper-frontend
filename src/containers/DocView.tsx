@@ -1,7 +1,8 @@
 import { faCross, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, {useEffect, useState} from 'react';
-import {useParams} from 'react-router';
+import {RouteProps, useParams} from 'react-router';
+import { Link } from 'react-router-dom';
 import Sticky from 'react-stickynode';
 import styled from 'styled-components';
 import {DocumentText} from '../components/DocumentText';
@@ -14,6 +15,7 @@ type SimilarSentence = {
   similarity: number;
   documentId: number;
   publisher: Publisher;
+  id: number;
 };
 
 type Sentence = {
@@ -39,6 +41,7 @@ const fetchArticle = (articleId: string) => {
 
 type DocViewParams = {
   articleId: string;
+  sentenceId: string;
 };
 
 type PopupWindowProps = {active: boolean}
@@ -55,13 +58,16 @@ const PopupWindow = styled.div<PopupWindowProps>`
   border-top: ${({active}) => active? '5vh solid #fac3ab': 'none'}
 `
 
-export const DocView: React.FC = () => {
+export const DocView: React.FC<RouteProps> = (props) => {
   const [article, setArticle] = useState<Document>();
-  const [hoveredSentence, setHoveredSentence] = useState<Sentence | undefined>();
   const [offsetTop, setOffsetTop] = useState(0);
-  const {articleId} = useParams<DocViewParams>();
+  const {articleId, sentenceId} = useParams<DocViewParams>();
   const [width, setWidth] = useState<number>(window.innerWidth);
 
+  const hoveredSentenceId = parseInt(sentenceId);
+  const hoveredSentence = article?.sentences.find(sent => sent.id === hoveredSentenceId);
+
+  
   function handleWindowSizeChange() {
     setWidth(window.innerWidth);
   }
@@ -89,11 +95,10 @@ export const DocView: React.FC = () => {
           {article && (
             <DocumentText
               document={article}
-              onSentenceHovered={(sentence, offset) => {
-                setHoveredSentence(sentence);
+              onSentenceHovered={(offset) => {
                 setOffsetTop(offset);
               }}
-              hoveredSentenceId={hoveredSentence === undefined ? -1 : hoveredSentence.id}
+              hoveredSentenceId={hoveredSentenceId !== undefined ? hoveredSentenceId : -1}
             />
           )}
         </div>
@@ -110,8 +115,7 @@ export const DocView: React.FC = () => {
           {article && (
             <DocumentText
               document={article}
-              onSentenceHovered={(sentence, offset) => {
-                setHoveredSentence(sentence);
+              onSentenceHovered={(offset) => {
                 setOffsetTop(offset);
               }}
               hoveredSentenceId={hoveredSentence === undefined ? -1 : hoveredSentence.id}
@@ -119,9 +123,9 @@ export const DocView: React.FC = () => {
           )}
         </div>
         <PopupWindow active={!!hoveredSentence}>
-          <div style={{position: 'absolute', right: 20, top: 20}} onClick={() => setHoveredSentence(undefined)}>
+          <Link style={{position: 'absolute', right: 20, top: 20}} to={`/articles/${articleId}`}>
             <FontAwesomeIcon icon={faTimes} />
-          </div>
+          </Link>
           <SimilarSentencePopup sentence={hoveredSentence} />
         </PopupWindow>
       </div>

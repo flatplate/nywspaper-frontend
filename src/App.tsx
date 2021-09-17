@@ -48,7 +48,7 @@ function App() {
         </Title>
         <Container>
           <InnerContainer>
-            <Route path='/article/:articleId' children={<DocView />} />
+            <Route path='/article/:articleId/:sentenceId' component={DocView} />
             <Route path='/' exact>
               <HomePage />
             </Route>

@@ -76,7 +76,7 @@ type ArticleSummaryProps = {
 const ArticleSummary: React.FC<ArticleSummaryProps> = ({articleSummary}) => {
   const mobile = window.innerWidth <= 768;
   return (
-    <Link to={`/article/${articleSummary.id}`}>
+    <Link to={`/article/${articleSummary.id}/-1`}>
       <ArticleSummaryContainer>
         <ImageArticleSummaryContainer>
           {!mobile && articleSummary.image && (

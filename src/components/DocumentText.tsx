@@ -44,13 +44,13 @@ const SentencesContainer = styled.div`
 
 type DocumentProps = {
   document: Document;
-  onSentenceHovered: (sentence: Sentence, offsetTop: number) => void;
+  onSentenceHovered: (offsetTop: number) => void;
   hoveredSentenceId: number;
 };
 
 const DocumentText: React.FC<DocumentProps> = props => {
   return (
-    <div style={{overflowX: 'visible'}}>
+    <div>
       <ImageContainer>
         <HeadlineImage src={props.document.image} />
       </ImageContainer>
@@ -62,7 +62,7 @@ const DocumentText: React.FC<DocumentProps> = props => {
       </AdditionalInformation>
       <SentencesContainer>
         {props.document.sentences.map(sentence => (
-          <SentenceElement sentence={sentence} onHovered={(offsetTop) => props.onSentenceHovered(sentence, offsetTop)} hovered={sentence.id === props.hoveredSentenceId} />
+          <SentenceElement sentence={sentence} onHovered={(offsetTop) => props.onSentenceHovered(offsetTop)} hovered={sentence.id === props.hoveredSentenceId} />
         ))}
       </SentencesContainer>
     </div>

@@ -1,6 +1,7 @@
 import { faAngleDown, faAngleUp, faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, {useEffect, useRef} from 'react';
+import { Link } from 'react-router-dom';
 import Sticky from 'react-stickynode';
 import styled from 'styled-components';
 import {PublisherBox} from '../components/PublisherBox';
@@ -79,13 +80,14 @@ const SimilarSentenceColumn: React.FC<SimilarSentenceColumnProps> = ({sentence, 
     }
   }, [sentence]);
 
+  console.log("sentence offset", sentenceOffset)
   return (
     <Container ref={ref}>
       <div style={{height: sentenceOffset}} />
       {(sentence &&
         (status == 'fetched' && data
           ? data.map((sentence, i) => (
-              <>
+              <Link to={`/article/${sentence.documentId}/${sentence.id}`}>
                   {i !== 0 && <hr />}
                 <div style={{display: 'flex', flexDirection: 'row'}}>
                   <div style={{width: '1em', display: 'flex', flexDirection: 'column', placeItems: 'start', justifyContent: 'center', fontSize: '2em', color: '#DC565B'}}>
@@ -102,7 +104,7 @@ const SimilarSentenceColumn: React.FC<SimilarSentenceColumnProps> = ({sentence, 
                     </PublisherSimilarity>
                   </div>
                 </div>
-              </>
+              </Link>
             ))
           : 'Loading')) || (
         <div style={{height: '100%', paddingTop: '10em', fontSize: '30px', color: 'rgba(0, 0, 0, 0.5)'}}>
