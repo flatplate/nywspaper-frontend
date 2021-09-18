@@ -27,7 +27,7 @@ const StoryBoxContainer = styled.div<MobileProps>`
 const StoryBoxTitle = styled.h5<{mobile: boolean}>`
   font-size: ${({mobile}) => mobile ? '1.4em' : '2em'};
   font-weight: bold;
-  color: #060606;
+  color: #443e38;
   margin: 0;
   margin-bottom: 0.5em;
   margin-top: 0.5em;
@@ -35,7 +35,7 @@ const StoryBoxTitle = styled.h5<{mobile: boolean}>`
 
 const StoryBoxDescription = styled.p<MobileProps>`
   font-size: ${({mobile}) => mobile ? '0.8em' : '1em'};
-  color: #443e38;
+  color: #443e38e0;
   margin: 0;
   text-align: justify;
 `;

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
-import { useMobile } from '../hooks';
+import {useMobile} from '../hooks';
 import {ArticleSummary as ArticleSummaryData} from '../types/Article';
 import {PublisherBox} from './PublisherBox';
 
@@ -21,9 +21,9 @@ const ArticleSummaryContainer = styled.div`
 `;
 
 const ArticleSummaryTitle = styled.h5<{mobile: boolean}>`
-  font-size: ${({mobile}) => mobile ? '1em' : '1.5em'};
+  font-size: ${({mobile}) => (mobile ? '1em' : '1.5em')};
   font-weight: bold;
-  color: #060606;
+  color: #443e38;
   margin: 0;
   margin-top: 0.2em;
 `;
@@ -76,7 +76,7 @@ type ArticleSummaryProps = {
 
 const ArticleSummary: React.FC<ArticleSummaryProps> = ({articleSummary}) => {
   const mobile = useMobile();
-  
+
   return (
     <Link to={`/article/${articleSummary.id}/-1`}>
       <ArticleSummaryContainer>
@@ -90,7 +90,9 @@ const ArticleSummary: React.FC<ArticleSummaryProps> = ({articleSummary}) => {
             <ArticleSummaryTitle mobile={mobile}>{articleSummary.title}</ArticleSummaryTitle>
             <ArticleSummaryAdditionalInfo>
               <PublisherBox publisher={articleSummary.publisher} />
-              <div>{articleSummary.publishTime}</div>
+              <div style={{marginLeft: 10}}>
+                {new Date(articleSummary.publishTime).toLocaleDateString('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit'})}
+              </div>
             </ArticleSummaryAdditionalInfo>
             <ArticleSummaryDescription>{articleSummary.description}</ArticleSummaryDescription>
           </ArticleSummaryContentContainer>

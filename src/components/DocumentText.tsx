@@ -58,12 +58,20 @@ const DocumentText: React.FC<DocumentProps> = props => {
       <Title href={props.document.url}>{props.document.title}</Title>
       <AdditionalInformation>
         <PublisherBox publisher={props.document.publisher} />
-        {'  '}
-        {props.document.publishTime}
+        <div style={{marginLeft: 10}}>
+          {new Date(props.document.publishTime).toLocaleDateString('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: '2-digit'
+          })}
+        </div>
       </AdditionalInformation>
       <SentencesContainer>
         {props.document.sentences.map(sentence => (
-          <SentenceElement sentence={sentence} onHovered={(offsetTop) => props.onSentenceHovered(offsetTop)} hovered={sentence.id === props.hoveredSentenceId} />
+          <SentenceElement sentence={sentence} onHovered={offsetTop => props.onSentenceHovered(offsetTop)} hovered={sentence.id === props.hoveredSentenceId} />
         ))}
       </SentencesContainer>
     </div>
