@@ -5,7 +5,11 @@ import { useMobile } from '../hooks';
 import { Story } from '../types/Story';
 
 const Hr = styled.hr`
-  color: #f1e6d650;
+  border-top: 1px solid #443e3840;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  margin: 2em;
 `;
 
 const HomePage: React.FC = () => {
