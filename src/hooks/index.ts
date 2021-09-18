@@ -3,9 +3,9 @@ import {useEffect, useState} from 'react';
 const cache: {[key: string]: any} = {};
 
 const useCachedFetch = <T>(url: string) => {
-  const [status, setStatus] = useState<'idle'|'fetching'|'fetched'>('idle');
+  const [status, setStatus] = useState<'idle' | 'fetching' | 'fetched'>('idle');
   const [data, setData] = useState<T>();
-  console.log("using fetch");
+  console.log('using fetch');
 
   useEffect(() => {
     if (!url) return;
@@ -13,12 +13,12 @@ const useCachedFetch = <T>(url: string) => {
     const fetchData = async () => {
       setStatus('fetching');
       if (cache[url]) {
-        console.log("Cached");
+        console.log('Cached');
         const data = cache[url];
         setData(data);
         setStatus('fetched');
       } else {
-        console.log("not cached");
+        console.log('not cached');
         const response = await fetch(url);
         const data = await response.json();
         cache[url] = data; // set response in cache;
@@ -33,4 +33,21 @@ const useCachedFetch = <T>(url: string) => {
   return {status, data};
 };
 
-export {useCachedFetch};
+const useMobile = () => {
+  const [width, setWidth] = useState<number>(window.innerWidth);
+
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowSizeChange);
+    return () => {
+      window.removeEventListener('resize', handleWindowSizeChange);
+    };
+  }, []);
+
+  return width < 768;
+};
+
+export {useCachedFetch, useMobile};

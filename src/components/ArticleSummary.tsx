@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import styled from 'styled-components';
+import { useMobile } from '../hooks';
 import {ArticleSummary as ArticleSummaryData} from '../types/Article';
 import {PublisherBox} from './PublisherBox';
 
@@ -19,8 +20,8 @@ const ArticleSummaryContainer = styled.div`
   }
 `;
 
-const ArticleSummaryTitle = styled.h5`
-  font-size: 1.5em;
+const ArticleSummaryTitle = styled.h5<{mobile: boolean}>`
+  font-size: ${({mobile}) => mobile ? '1em' : '1.5em'};
   font-weight: bold;
   color: #060606;
   margin: 0;
@@ -55,7 +56,7 @@ const ArticleSummaryContentContainer = styled.div`
 const ArticleSummaryAdditionalInfo = styled.div`
   font-size: 0.7em;
   color: #443e38aa;
-  margin-top: 0.2em;
+  margin-top: 1em;
   margin-bottom: 1em;
   justify-items: between;
   place-items: center;
@@ -74,7 +75,8 @@ type ArticleSummaryProps = {
 };
 
 const ArticleSummary: React.FC<ArticleSummaryProps> = ({articleSummary}) => {
-  const mobile = window.innerWidth <= 768;
+  const mobile = useMobile();
+  
   return (
     <Link to={`/article/${articleSummary.id}/-1`}>
       <ArticleSummaryContainer>
@@ -85,7 +87,7 @@ const ArticleSummary: React.FC<ArticleSummaryProps> = ({articleSummary}) => {
             </ArticleImageContainer>
           )}
           <ArticleSummaryContentContainer>
-            <ArticleSummaryTitle>{articleSummary.title}</ArticleSummaryTitle>
+            <ArticleSummaryTitle mobile={mobile}>{articleSummary.title}</ArticleSummaryTitle>
             <ArticleSummaryAdditionalInfo>
               <PublisherBox publisher={articleSummary.publisher} />
               <div>{articleSummary.publishTime}</div>

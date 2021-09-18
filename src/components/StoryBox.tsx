@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
+import { useMobile } from '../hooks';
 import {Story} from '../types/Story';
 import {StoryArticleList} from './StoryArticleList';
 
@@ -7,8 +8,12 @@ type StoryBoxProps = {
   story: Story;
 };
 
-const StoryBoxContainer = styled.div`
-  margin: 50px;
+type MobileProps = {
+  mobile: boolean
+}
+
+const StoryBoxContainer = styled.div<MobileProps>`
+  margin: 0px;
   display: flex;
   flex-direction: column;
   justify-items: center;
@@ -19,8 +24,8 @@ const StoryBoxContainer = styled.div`
   border-left: 3px solid #443e3840;
 `;
 
-const StoryBoxTitle = styled.h5`
-  font-size: 2em;
+const StoryBoxTitle = styled.h5<{mobile: boolean}>`
+  font-size: ${({mobile}) => mobile ? '1.4em' : '2em'};
   font-weight: bold;
   color: #060606;
   margin: 0;
@@ -28,8 +33,8 @@ const StoryBoxTitle = styled.h5`
   margin-top: 0.5em;
 `;
 
-const StoryBoxDescription = styled.p`
-  font-size: 1em;
+const StoryBoxDescription = styled.p<MobileProps>`
+  font-size: ${({mobile}) => mobile ? '0.8em' : '1em'};
   color: #443e38;
   margin: 0;
   text-align: justify;
@@ -58,15 +63,15 @@ const StoryContentContainer = styled.div``;
 
 const StoryBox: React.FC<StoryBoxProps> = ({story}) => {
   const [collapsed, setCollapsed] = useState(true);
-  const mobile = window.innerWidth <= 768;
+  const mobile = useMobile();
 
   return (
-    <StoryBoxContainer>
+    <StoryBoxContainer mobile={mobile}>
       <ImageStoryContainer onClick={() => setCollapsed(!collapsed)} mobile={mobile}>
         {story.image && <StoryBoxImage src={story.image} />}
         <StoryContentContainer>
-          <StoryBoxTitle>{story.title}</StoryBoxTitle>
-          <StoryBoxDescription>{story.description}</StoryBoxDescription>
+          <StoryBoxTitle mobile={mobile}>{story.title}</StoryBoxTitle>
+          <StoryBoxDescription mobile={mobile}>{story.description}</StoryBoxDescription>
         </StoryContentContainer>
       </ImageStoryContainer>
       {!collapsed && <StoryArticleList articleIdList={story.articles} />}

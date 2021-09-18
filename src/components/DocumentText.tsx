@@ -8,8 +8,7 @@ const Title = styled.a`
   font-size: 1.8em;
   font-weight: bold;
   color: #060606;
-  margin: 0;
-  margin-bottom: 0em;
+  margin-bottom: 0px;
   margin-top: 0.5em;
   text-align: justify;
 `;
@@ -23,6 +22,7 @@ const AdditionalInformation = styled.p`
   display: flex;
   flex-direction: row;
   place-items: center;
+  margin-top: 1em;
 `;
 
 const HeadlineImage = styled.img`
@@ -34,6 +34,7 @@ const ImageContainer = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
+  margin-bottom: 2em;
 `;
 
 const SentencesContainer = styled.div`

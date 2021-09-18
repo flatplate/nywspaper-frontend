@@ -6,6 +6,7 @@ import {Footer} from './components/Footer';
 import {HomePage} from './containers/HomePage';
 import styled from 'styled-components';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import { useMobile } from './hooks';
 
 const toolbar = {
   backgroundColor: '#f1e6d6 '
@@ -27,10 +28,10 @@ const AppContainer = styled.div`
   flex-direction: column;
 `;
 
-const InnerContainer = styled.div`
+const InnerContainer = styled.div<{mobile: boolean}>`
   max-width: 100em;
   min-height: 100vh;
-  margin: 5em;
+  margin: ${({mobile}) => mobile ? '1em' : '5em'};
 `;
 
 const Container = styled.div`
@@ -40,6 +41,7 @@ const Container = styled.div`
 `;
 
 function App() {
+  const mobile = useMobile();
   return (
     <AppContainer>
       <Router>
@@ -47,7 +49,7 @@ function App() {
           <Link to='/'>nywspaper</Link>
         </Title>
         <Container>
-          <InnerContainer>
+          <InnerContainer mobile={mobile}>
             <Route path='/article/:articleId/:sentenceId' component={DocView} />
             <Route path='/' exact>
               <HomePage />

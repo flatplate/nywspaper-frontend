@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useMobile } from '../hooks';
 
 type BiasBoxProps = {
   biasRating: number;
@@ -19,11 +20,11 @@ const ColoredBox = styled.div<BiasBoxProps>`
   border-radius: 0.2em;
   place-items: center;
   display: flex;
-  font-size: 18px;
+  font-size: ${({mobile}) => mobile ? '1.2em' : '1.5em'};
 `;
 
 const BiasBox: React.FC<BiasBoxProps> = ({biasRating}) => {
-  const mobile = window.innerWidth <= 768;
+  const mobile = useMobile();
   return (
     <ColoredBox biasRating={biasRating} mobile={mobile}>
       {(mobile ? biasRatingsMobile : biasRatings)[biasRating + 2]}

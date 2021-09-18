@@ -123,7 +123,7 @@ export const DocView: React.FC<RouteProps> = (props) => {
           )}
         </div>
         <PopupWindow active={!!hoveredSentence}>
-          <Link style={{position: 'absolute', right: 20, top: 20}} to={`/articles/${articleId}`}>
+          <Link style={{position: 'absolute', right: 20, top: 20}} to={`/article/${articleId}/-1`}>
             <FontAwesomeIcon icon={faTimes} />
           </Link>
           <SimilarSentencePopup sentence={hoveredSentence} />

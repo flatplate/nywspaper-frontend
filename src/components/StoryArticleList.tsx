@@ -8,7 +8,12 @@ type StoryArticleListProps = {
   articleIdList: number[];
 };
 
-const ArticleListContainer = styled.div``;
+const ArticleListContainer = styled.div`
+`;
+
+const ArticleSummaryContainer = styled.div`
+  margin-top: 1em;
+`
 
 const StoryArticleList: React.FC<StoryArticleListProps> = ({articleIdList}) => {
   const params = articleIdList.map((id, i) => `${i === 0 ? '?' : '&'}articles=${id}`).join('');
@@ -18,9 +23,9 @@ const StoryArticleList: React.FC<StoryArticleListProps> = ({articleIdList}) => {
     <ArticleListContainer>
       {status === 'fetched' && data
         ? data.map(article => (
-            <div>
+            <ArticleSummaryContainer>
               <ArticleSummary articleSummary={article} />
-            </div>
+            </ArticleSummaryContainer>
           ))
         : 'loading'}
     </ArticleListContainer>

@@ -1,6 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 import styled from 'styled-components';
 import {StoryBox} from '../components/StoryBox';
+import { useMobile } from '../hooks';
 import { Story } from '../types/Story';
 
 const Hr = styled.hr`
@@ -12,7 +13,7 @@ const HomePage: React.FC = () => {
   const [error, setError] = React.useState(undefined);
   const [offset, setOffset] = React.useState(0);
   const loadRef: React.Ref<HTMLInputElement> = useRef(null);
-  const mobile = window.innerWidth < 768;
+  const mobile = useMobile();
 
   const loadStories = (offset: number) => {
     fetch(`${process.env.REACT_APP_API_URL}/api/v1/stories?offset=${offset}`)
