@@ -20,7 +20,7 @@ const ColoredBox = styled.div<BiasBoxProps>`
   border-radius: 0.2em;
   place-items: center;
   display: flex;
-  font-size: ${({mobile}) => mobile ? '1.2em' : '1.5em'};
+  font-size: ${({mobile}) => mobile ? '1.2em' : '1em'};
 `;
 
 const BiasBox: React.FC<BiasBoxProps> = ({biasRating}) => {
