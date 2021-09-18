@@ -50,9 +50,6 @@ const SimilarSentenceBox: React.FC<SimilarSentenceBoxProps> = props => {
   const {status, data} = useCachedFetch<SimilarSentence[]>(
     `${process.env.REACT_APP_API_URL}/api/v1/similarsentences?document_id=${props.documentId}&sentence_id=${props.sentenceId}`
   );
-  console.log('DATA', data);
-  console.log('DOCUMENTID', (data && data.length > 0 && data[0].documentId) || null);
-  console.log('STATUS', status);
   return (
     <SentenceCard>
       {status == 'fetched' && data

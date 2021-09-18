@@ -80,7 +80,6 @@ const SimilarSentenceColumn: React.FC<SimilarSentenceColumnProps> = ({sentence, 
     }
   }, [sentence]);
 
-  console.log("sentence offset", sentenceOffset)
   return (
     <Container ref={ref}>
       <div style={{height: sentenceOffset}} />

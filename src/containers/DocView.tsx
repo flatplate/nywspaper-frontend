@@ -79,7 +79,6 @@ export const DocView: React.FC<RouteProps> = (props) => {
     };
   }, []);
 
-  console.log();
 
   useEffect(() => {
     articleId &&
