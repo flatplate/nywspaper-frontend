@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import {useMobile} from '../hooks';
 import {ArticleSummary as ArticleSummaryData} from '../types/Article';
+import { processImageUrl } from '../util/ProcessImage';
 import {PublisherBox} from './PublisherBox';
 
 const ArticleSummaryContainer = styled.div`
@@ -74,6 +75,7 @@ type ArticleSummaryProps = {
   articleSummary: ArticleSummaryData;
 };
 
+
 const ArticleSummary: React.FC<ArticleSummaryProps> = ({articleSummary}) => {
   const mobile = useMobile();
 
@@ -83,7 +85,7 @@ const ArticleSummary: React.FC<ArticleSummaryProps> = ({articleSummary}) => {
         <ImageArticleSummaryContainer>
           {!mobile && articleSummary.image && (
             <ArticleImageContainer>
-              <ArticleSummaryImage src={articleSummary.image} />
+              <ArticleSummaryImage src={processImageUrl(articleSummary.image)} />
             </ArticleImageContainer>
           )}
           <ArticleSummaryContentContainer>
@@ -91,7 +93,14 @@ const ArticleSummary: React.FC<ArticleSummaryProps> = ({articleSummary}) => {
             <ArticleSummaryAdditionalInfo>
               <PublisherBox publisher={articleSummary.publisher} />
               <div style={{marginLeft: 10}}>
-                {new Date(articleSummary.publishTime).toLocaleDateString('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit'})}
+                {new Date(articleSummary.publishTime).toLocaleDateString('en-US', {
+                  weekday: 'long',
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                  hour: 'numeric',
+                  minute: '2-digit'
+                })}
               </div>
             </ArticleSummaryAdditionalInfo>
             <ArticleSummaryDescription>{articleSummary.description}</ArticleSummaryDescription>

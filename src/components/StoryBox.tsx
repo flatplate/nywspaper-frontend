@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import { useMobile } from '../hooks';
 import {Story} from '../types/Story';
+import { processImageUrl } from '../util/ProcessImage';
 import {StoryArticleList} from './StoryArticleList';
 
 type StoryBoxProps = {
@@ -68,7 +69,7 @@ const StoryBox: React.FC<StoryBoxProps> = ({story}) => {
   return (
     <StoryBoxContainer mobile={mobile}>
       <ImageStoryContainer onClick={() => setCollapsed(!collapsed)} mobile={mobile}>
-        {story.image && <StoryBoxImage src={story.image} />}
+        {story.image && <StoryBoxImage src={processImageUrl(story.image)} />}
         <StoryContentContainer>
           <StoryBoxTitle mobile={mobile}>{story.title}</StoryBoxTitle>
           <StoryBoxDescription mobile={mobile}>{story.description}</StoryBoxDescription>
