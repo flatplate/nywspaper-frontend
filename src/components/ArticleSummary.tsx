@@ -39,6 +39,7 @@ const ArticleSummaryDescription = styled.p`
 const ArticleSummaryImage = styled.img`
   margin: 0;
   margin-right: 1em;
+  border-radius: 0.25em;
   max-height: 6em;
   height: 6em;
   width: 10em;

@@ -56,7 +56,7 @@ const HomePage: React.FC = () => {
     <div style={{maxWidth: '60em'}}>
       {stories.map((story, i) => (
         <>
-          {i !== 0 && <Hr />}
+          {i !== 0 && <br />}
           <StoryBox story={story} key={story.id} />
         </>
       ))}

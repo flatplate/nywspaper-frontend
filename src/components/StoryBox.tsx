@@ -21,8 +21,16 @@ const StoryBoxContainer = styled.div<MobileProps>`
   place-items: center;
   cursor: pointer;
   border: none;
-  border-right: 3px solid #443e3840;
-  border-left: 3px solid #443e3840;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.1);
+  border: 1px solid #443e3820;
+  border-radius: 0.25em;
+  padding: 1em;
+  background-color: #f1e6d6;
+  transition: background-color 100ms linear;
+
+  &:hover {
+    background-color: #f1e6d6a0;
+  }
 `;
 
 const StoryBoxTitle = styled.h5<{mobile: boolean}>`
@@ -30,7 +38,6 @@ const StoryBoxTitle = styled.h5<{mobile: boolean}>`
   font-weight: bold;
   color: #443e38;
   margin: 0;
-  margin-bottom: 0.5em;
   margin-top: 0.5em;
 `;
 
@@ -48,6 +55,7 @@ const StoryBoxImage = styled.img`
   width: 15em;
   min-width: 15em;
   object-fit: cover;
+  border-radius: 0.25em;
   flex: 1;
 `;
 
@@ -59,10 +67,13 @@ const ImageStoryContainer = styled.div<{mobile: boolean}>`
   cursor: pointer;
   transition: background-color 100ms linear;
 
-  &:hover {
-    background-color: #eeddc4;
-  }
 `;
+
+const ArticleNumber = styled.div`
+  color: #443e38e0;
+  margin-bottom: 0.75em;
+
+`
 
 const StoryContentContainer = styled.div``;
 
@@ -76,6 +87,7 @@ const StoryBox: React.FC<StoryBoxProps> = ({story}) => {
         {story.image && <StoryBoxImage src={processImageUrl(story.image)} />}
         <StoryContentContainer>
           <StoryBoxTitle mobile={mobile}>{story.title}</StoryBoxTitle>
+          <ArticleNumber>{story.articles.length} Article{story.articles.length > 1 ? 's' : ''}</ArticleNumber>
           <StoryBoxDescription mobile={mobile}>{story.description}</StoryBoxDescription>
         </StoryContentContainer>
       </ImageStoryContainer>
