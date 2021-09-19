@@ -40,6 +40,11 @@ const ArticleSummaryImage = styled.img`
   margin: 0;
   margin-right: 1em;
   max-height: 6em;
+  height: 6em;
+  width: 10em;
+  min-width: 10em;
+  object-fit: cover;
+  flex: 1;
 `;
 
 const ImageArticleSummaryContainer = styled.div`

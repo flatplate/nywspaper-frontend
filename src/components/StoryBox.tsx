@@ -44,7 +44,11 @@ const StoryBoxDescription = styled.p<MobileProps>`
 const StoryBoxImage = styled.img`
   margin: 0;
   margin-right: 1em;
-  max-height: 8em;
+  height: 9em;
+  width: 15em;
+  min-width: 15em;
+  object-fit: cover;
+  flex: 1;
 `;
 
 const ImageStoryContainer = styled.div<{mobile: boolean}>`
