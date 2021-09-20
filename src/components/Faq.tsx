@@ -2,7 +2,7 @@ import React from 'react';
 
 const FAQ: React.FC = () => {
   return (
-    <div style={{maxWidth: '30em'}}>
+    <div style={{maxWidth: '30em', color: '#443e38'}}>
       <h1>FAQ</h1>
       <div>
         <h2>1. What is nywspaper?</h2>
