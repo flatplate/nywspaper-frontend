@@ -117,7 +117,7 @@ const SimilarSentenceColumn: React.FC<SimilarSentenceColumnProps> = ({sentence, 
               </Link>
             ))
           : 'Loading')) || (
-        <div style={{height: '100%', paddingTop: '10em', fontSize: '30px', color: '#fcded1'}}>
+        <div style={{height: '100%', paddingTop: '10em', fontSize: '30px', color: '#443e38a0'}}>
           <p>Click on a paragraph in the article to see similar ones from other news sources.</p>
         </div>
       )}
