@@ -187,7 +187,7 @@ window.env = {
   "npm_package_devDependencies__types_styled_components": "^5.1.13",
   "npm_package_eslintConfig_extends_0": "react-app",
   "npm_package_eslintConfig_extends_1": "react-app/jest",
-  "npm_package_gitHead": "c79d8b50f0a87aa9c7fc8ca04391925d00c0255d",
+  "npm_package_gitHead": "2734068c1f5c495dd9911914130db463c2c23156",
   "npm_package_name": "nywspaper",
   "npm_package_private": "true",
   "npm_package_readmeFilename": "README.md",

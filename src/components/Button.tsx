@@ -18,7 +18,7 @@ const ButtonDiv = styled.div`
   }
 
   &:active {
-    background-color: #262636;
+    background-color: linear-gradient(#536976, #262636);
   }
 `
 
