@@ -39,6 +39,7 @@ const SentenceElement: React.FC<SentenceProps> = props => {
       to={`/article/${props.sentence.articleId}/${props.sentence.id}`}
       onClick={() => {
         props.onHovered(ref.current?.getBoundingClientRect().top || 0);
+        ref.current && window.scrollTo(0, ref.current.offsetTop - window.innerHeight / 4);
       }}
     >
       <Container hovered={props.hovered}>
@@ -47,7 +48,7 @@ const SentenceElement: React.FC<SentenceProps> = props => {
             backgroundColor: props.hovered ? '#f8aa88' : bgColor,
             cursor: 'pointer',
             transition: 'background-color 150ms linear',
-            color: '#060606',
+            color: '#443e38',
             fontFamily: '"Source Serif Pro", serif',
             whiteSpace: 'pre-line'
           }}

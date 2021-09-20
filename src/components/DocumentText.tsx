@@ -7,7 +7,7 @@ import {SentenceElement} from './Sentence';
 const Title = styled.a`
   font-size: 1.8em;
   font-weight: bold;
-  color: #060606;
+  color: #443e38;
   margin-bottom: 0px;
   margin-top: 0.5em;
   text-align: justify;
@@ -17,7 +17,7 @@ const AdditionalInformation = styled.p`
   font-size: 0.8em;
   margin: 0;
   margin-bottom: 1em;
-  color: #06060690;
+  color: #443e38e0;
   text-align: left;
   display: flex;
   flex-direction: row;
@@ -41,6 +41,7 @@ const SentencesContainer = styled.div`
   margin-top: 2em;
   line-height: 1.5em;
   overflow-x: visible;
+  color: #443e38;
 `;
 
 type DocumentProps = {

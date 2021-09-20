@@ -1,7 +1,7 @@
-import { faAngleDown, faAngleUp, faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faAngleDown, faAngleUp, faCaretDown, faCaretUp} from '@fortawesome/free-solid-svg-icons';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import React, {useEffect, useRef} from 'react';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import Sticky from 'react-stickynode';
 import styled from 'styled-components';
 import {PublisherBox} from '../components/PublisherBox';
@@ -55,8 +55,7 @@ const Container = styled.div`
   height: 100vh;
   top: 0;
   overflow-y: scroll;
-  color: rgba(0, 0, 0, 0.8);
-  background-color: #f8aa8890;
+  color: rgba(255, 255, 255, 0.8);
   padding-left: 1em;
   padding-right: 1em;
 
@@ -64,6 +63,23 @@ const Container = styled.div`
   scrollbar-width: none; /* Firefox */
   &::-webkit-scrollbar {
     display: none;
+  }
+`;
+
+const SimilarSentenceCard = styled.div`
+  display: flex;
+  flex-direction: row;
+  background-color: #f1e6d6;
+  border-radius: 0.25em;
+  padding: 2em;
+  box-shadow: 0px 5px 10px 0px #26263620;
+  margin-bottom: 1em;
+  transition: background-color 100ms linear;
+  border: 1px solid #26263620;
+  color: #443e38;
+
+  &:hover {
+    background-color: #f1e6d6a0;
   }
 `;
 
@@ -82,17 +98,12 @@ const SimilarSentenceColumn: React.FC<SimilarSentenceColumnProps> = ({sentence, 
 
   return (
     <Container ref={ref}>
-      <div style={{height: sentenceOffset}} />
+      <div style={{height: window.innerHeight / 4}} />
       {(sentence &&
         (status == 'fetched' && data
           ? data.map((sentence, i) => (
               <Link to={`/article/${sentence.documentId}/${sentence.id}`}>
-                  {i !== 0 && <hr />}
-                <div style={{display: 'flex', flexDirection: 'row'}}>
-                  <div style={{width: '1em', display: 'flex', flexDirection: 'column', placeItems: 'start', justifyContent: 'center', fontSize: '2em', color: '#DC565B'}}>
-                    <FontAwesomeIcon icon={faAngleUp} cursor="pointer"/>
-                    <FontAwesomeIcon icon={faAngleDown} cursor="pointer"/>
-                  </div>
+                <SimilarSentenceCard>
                   <div style={{flex: 1}}>
                     <Sentence>{sentence.text}</Sentence>
                     <PublisherSimilarity>
@@ -102,11 +113,11 @@ const SimilarSentenceColumn: React.FC<SimilarSentenceColumnProps> = ({sentence, 
                       <Similarity>Similarity {Math.round(sentence.similarity * 100)}%</Similarity>
                     </PublisherSimilarity>
                   </div>
-                </div>
+                </SimilarSentenceCard>
               </Link>
             ))
           : 'Loading')) || (
-        <div style={{height: '100%', paddingTop: '10em', fontSize: '30px', color: 'rgba(0, 0, 0, 0.5)'}}>
+        <div style={{height: '100%', paddingTop: '10em', fontSize: '30px', color: '#fcded1'}}>
           <p>Click on a paragraph in the article to see similar ones from other news sources.</p>
         </div>
       )}

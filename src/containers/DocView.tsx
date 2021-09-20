@@ -100,6 +100,7 @@ export const DocView: React.FC<RouteProps> = (props) => {
               hoveredSentenceId={hoveredSentenceId !== undefined ? hoveredSentenceId : -1}
             />
           )}
+      <div style={{height: window.innerHeight / 1.5}} />
         </div>
         <div style={{height: '100%', width: '1em'}}></div>
         <div style={{flex: 1}}>
