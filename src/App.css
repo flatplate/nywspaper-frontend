@@ -39,7 +39,8 @@
 
 html, body {
   font-family: "Source Serif Pro", serif !important;
-  background-color: #eeddc4;
+background-image: linear-gradient(to bottom, #f1e6d6 0%, #f8aa88 400%);
+  background-attachment: fixed;
   scroll-behavior: smooth;
 }
 
