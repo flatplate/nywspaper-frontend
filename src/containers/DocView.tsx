@@ -84,7 +84,7 @@ export const DocView: React.FC<RouteProps> = (props) => {
     articleId &&
       fetchArticle(articleId)
         .then(article => setArticle(article))
-        .catch(error => window.alert(error.toString()));
+        .catch(error => console.log(error));
   }, [articleId]);
 
   if (width > 768) {
