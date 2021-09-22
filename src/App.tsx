@@ -11,7 +11,7 @@ import {Button} from './components/Button';
 import {FAQ} from './components/Faq';
 
 const toolbar = {
-  backgroundColor: '#262636'
+  backgroundColor: '#f1e6d6 '
 };
 
 const Title = styled.h2`
