@@ -9,6 +9,7 @@ import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import {useMobile} from './hooks';
 import {Button} from './components/Button';
 import {FAQ} from './components/Faq';
+import ScrollToTop from './components/ScrollToTop';
 
 const toolbar = {
   backgroundColor: '#f1e6d6 '
@@ -70,6 +71,7 @@ function App() {
   return (
     <AppContainer>
       <Router>
+        <ScrollToTop />
         <TopBar mobile={mobile}>
           <Title>
             <Link to='/'>nywspaper</Link>
