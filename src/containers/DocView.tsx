@@ -86,6 +86,10 @@ export const DocView: React.FC<RouteProps> = (props) => {
         .then(article => setArticle(article))
         .catch(error => console.log(error));
   }, [articleId]);
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (width > 768) {
     return (

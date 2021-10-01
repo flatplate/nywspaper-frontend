@@ -71,7 +71,6 @@ function App() {
   return (
     <AppContainer>
       <Router>
-        <ScrollToTop />
         <TopBar mobile={mobile}>
           <Title>
             <Link to='/'>nywspaper</Link>
