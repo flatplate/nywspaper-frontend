@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {DocView} from './containers/DocView';
@@ -10,6 +10,7 @@ import {useMobile} from './hooks';
 import {Button} from './components/Button';
 import {FAQ} from './components/Faq';
 import ScrollToTop from './components/ScrollToTop';
+import { Helmet } from 'react-helmet';
 
 const toolbar = {
   backgroundColor: '#f1e6d6 '
@@ -70,6 +71,10 @@ function App() {
   const mobile = useMobile();
   return (
     <AppContainer>
+      <Helmet>
+
+      <script id='CookieDeclaration' src='https://consent.cookiebot.com/5765d369-9d16-4f43-8361-16f46dcc3130/cd.js' type='text/javascript' async></script>
+      </Helmet>
       <Router>
         <TopBar mobile={mobile}>
           <Title>

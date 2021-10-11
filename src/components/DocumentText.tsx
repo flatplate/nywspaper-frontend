@@ -41,7 +41,6 @@ const SentencesContainer = styled.div`
   margin-top: 2em;
   line-height: 1.5em;
   overflow-x: visible;
-  color: #443e38;
 `;
 
 type DocumentProps = {
