@@ -1,5 +1,3 @@
-import React, {useState} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import {DocView} from './containers/DocView';
 import {Footer} from './components/Footer';
@@ -9,12 +7,8 @@ import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import {useMobile} from './hooks';
 import {Button} from './components/Button';
 import {FAQ} from './components/Faq';
-import ScrollToTop from './components/ScrollToTop';
-import { Helmet } from 'react-helmet';
-
-const toolbar = {
-  backgroundColor: '#f1e6d6 '
-};
+import {Helmet} from 'react-helmet';
+import { SurveyPopup } from './components/SurveyPopup';
 
 const Title = styled.h2`
   color: #262636;
@@ -72,9 +66,9 @@ function App() {
   return (
     <AppContainer>
       <Helmet>
-
-      <script id='CookieDeclaration' src='https://consent.cookiebot.com/5765d369-9d16-4f43-8361-16f46dcc3130/cd.js' type='text/javascript' async></script>
+        <script id='CookieDeclaration' src='https://consent.cookiebot.com/5765d369-9d16-4f43-8361-16f46dcc3130/cd.js' type='text/javascript' async></script>
       </Helmet>
+      <SurveyPopup />
       <Router>
         <TopBar mobile={mobile}>
           <Title>

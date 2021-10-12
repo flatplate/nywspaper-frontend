@@ -11,6 +11,9 @@ const ButtonDiv = styled.div`
   cursor: pointer;
   transition: all 100ms linear;
   user-select: none;
+  text-align: center;
+  place-items: center;
+  display: flex;
   
   &:hover {
     background-color: #262636e6;
