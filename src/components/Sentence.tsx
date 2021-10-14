@@ -1,7 +1,5 @@
 import React, {useRef, useState} from 'react';
-import {useCachedFetch} from '../hooks';
 import {Sentence, SimilarSentence} from '../containers/DocView';
-import {SimilarSentenceBox} from './SimilarSentenceBox';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';
 
